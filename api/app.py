@@ -7,7 +7,7 @@ from routes.animales import animales
 load_dotenv()
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     # Registro de blueprints
     app.register_blueprint(animales, url_prefix='/api')
