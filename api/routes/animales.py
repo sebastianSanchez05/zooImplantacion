@@ -51,7 +51,7 @@ def crear_animal():
     req = request.get_json()
     
     # Validaciones
-    campos_requeridos = ["nombre", "especie", "edad", "origen", "nombre_cientifico"]
+    campos_requeridos = ["nombre", "especie", "edad", "origen", "nombre_cientifico", "wiki_url"]
     for campos in campos_requeridos:
         if campos not in req:
             return jsonify({"message": f"El campo '{campos}' es obligatorio"}), 400
@@ -62,7 +62,8 @@ def crear_animal():
         especie=req["especie"],
         edad=req["edad"],
         origen=req["origen"],
-        nombre_cientifico=req["nombre_cientifico"]
+        nombre_cientifico=req["nombre_cientifico"],
+        wiki_url=req["wiki_url"]
     )
     
     instancia = nuevo_animal.hacerColeccion()
@@ -82,7 +83,7 @@ def editar_animal(id):
     req = request.get_json()
     
     # Validaciones
-    campos_requeridos = ["nombre", "especie", "edad", "origen", "nombre_cientifico"]
+    campos_requeridos = ["nombre", "especie", "edad", "origen", "nombre_cientifico", "wiki_url"]
     for campo in campos_requeridos:
         if campo not in req:
             return jsonify({"message": f"El campo '{campo}' es obligatorio"}), 400
@@ -93,7 +94,8 @@ def editar_animal(id):
         'especie': req["especie"],
         'edad': req["edad"],
         'origen': req["origen"],
-        'nombre_cientifico': req["nombre_cientifico"]
+        'nombre_cientifico': req["nombre_cientifico"],
+        'wiki_url': req["wiki_url"]
     }
 
     coleccion = db['animal']
